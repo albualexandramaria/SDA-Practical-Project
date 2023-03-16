@@ -42,8 +42,8 @@ public class Main {
                     vetController.createVet();
                     break;
                 case UPDATE_VET:
-                    System.out.println("Update vet not implemented");
-                    break;
+                    while (!vetController.updateVet())
+                        break;
                 case DELETE_VET:
                     System.out.println("Delete vet not implemented");
                     break;
