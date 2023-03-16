@@ -1,4 +1,4 @@
-package com.sda.practicalproject.controler.menu;
+package com.sda.practicalproject.controller.menu;
 
 public enum MenuItem {
 
