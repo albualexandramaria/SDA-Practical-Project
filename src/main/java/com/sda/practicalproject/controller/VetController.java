@@ -5,6 +5,7 @@ import com.sda.practicalproject.repository.exception.EntityUpdateFailedException
 import com.sda.practicalproject.service.VetService;
 import com.sda.practicalproject.service.exception.EntityNotFoundException;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class VetController {
@@ -45,7 +46,7 @@ public class VetController {
         }
     }
 
-    public boolean updateVet() {
+    public void updateVet() {
         try {
             System.out.println("Please insert vet's id");
             long id = Long.parseLong(scanner.nextLine());
@@ -58,7 +59,8 @@ public class VetController {
 
             vetService.updateVet(id, lastName, address, speciality);
             System.out.println("Vet has been updated");
-            return true;
+
+
         } catch (NumberFormatException e) {
             System.err.println("Please insert a valid numeric id");
         } catch (IllegalArgumentException e) {
@@ -71,8 +73,26 @@ public class VetController {
         } catch (Exception e) {
             System.err.println("Internal server error");
         }
+    }
 
-        return false;
+    public void findVetById() {
+        try {
+            System.out.println("Please insert vet's id");
+            long id = Long.parseLong(scanner.nextLine());
+            Optional<Vet> optionalVet = vetService.findVetById(id);
+            if (optionalVet.isPresent()) {
+                System.out.println(optionalVet.get());
+            } else {
+                System.out.println("Vet was not found by id" + id);
+            }
+        } catch (NumberFormatException e) {
+            System.err.println("Please insert a valid numeric id");
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Internal server error");
+        }
+
     }
 }
 

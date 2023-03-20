@@ -42,13 +42,16 @@ public class Main {
                     vetController.createVet();
                     break;
                 case UPDATE_VET:
-                    while (!vetController.updateVet())
-                        break;
+                    vetController.updateVet();
+                    break;
                 case DELETE_VET:
                     System.out.println("Delete vet not implemented");
                     break;
                 case VIEW_VET_LIST:
                     vetController.displayAllVets();
+                    break;
+                case VIEW_VET_BY_ID:
+                    vetController.findVetById();
                     break;
                 case EXIT:
                     System.out.println("Goodbye!");
