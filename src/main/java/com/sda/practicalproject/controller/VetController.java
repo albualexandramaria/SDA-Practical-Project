@@ -77,13 +77,13 @@ public class VetController {
 
     public void findVetById() {
         try {
-            System.out.println("Please insert vet's id");
+            System.out.println("Please enter the vet's id");
             long id = Long.parseLong(scanner.nextLine());
             Optional<Vet> optionalVet = vetService.findVetById(id);
             if (optionalVet.isPresent()) {
                 System.out.println(optionalVet.get());
             } else {
-                System.out.println("Vet was not found by id" + id);
+                System.out.println("Vet was not found by id: " + id);
             }
         } catch (NumberFormatException e) {
             System.err.println("Please insert a valid numeric id");
@@ -93,6 +93,25 @@ public class VetController {
             System.err.println("Internal server error");
         }
 
+
+    }
+
+
+    public void deleteVetById() {
+        try {
+            System.out.println("Please enter the vet's id");
+            long id = Long.parseLong(scanner.nextLine());
+            vetService.deleteVetById(id);
+            System.out.println("Vet was deleted");
+        } catch (NumberFormatException e) {
+            System.err.println("Please insert a valid numeric id");
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        } catch (EntityNotFoundException e) {
+            System.err.println(e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Internal server error");
+        }
     }
 }
 

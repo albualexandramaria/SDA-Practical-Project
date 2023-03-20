@@ -80,5 +80,18 @@ public class VetServiceImpl implements VetService {
         }
         return vetRepository.findById(id);
     }
+
+    @Override
+    public void deleteVetById(long id) throws EntityUpdateFailedException, EntityNotFoundException {
+        if (id <= 0) {
+            throw new IllegalArgumentException("Id is less or equal to zero");
+        }
+        Optional<Vet> vetOptional = vetRepository.findById(id);
+        if (vetOptional.isPresent()) {
+            vetRepository.delete(vetOptional.get());
+        } else {
+            throw new EntityNotFoundException("Vet not found by id: " + id);
+        }
+    }
 }
 
