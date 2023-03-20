@@ -65,7 +65,7 @@ public class Main {
 
             }
         }
-        System.out.println();
+        
         SessionManager.shutdown();
     }
 }
